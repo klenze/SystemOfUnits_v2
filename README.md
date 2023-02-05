@@ -97,7 +97,7 @@ This will make calculating a*b and a/b harder, but not impossible. Don't expect 
 * Some more operators (assignment, +=, etc) should be implemented. 
 * Some functions which can be applied to units (such as std::sqrt) should be overloaded.
 * More troublesome: std::pow(q, x) for non-integer x. Options include replacing it with a function ``template<int a, int b=1> pow(quantity q)`` which calculates $$q^\frac{a}{b}$$. Perhaps I'll through in a preprocessor macro as syntactic sugar.  
-* Performance tests or asm analysis: does the inlining work everywhere, or is additional code compared to ``-DSO_NO_DIM_ANALYSIS``?
+* Performance tests or asm analysis: does the inlining work everywhere, or is additional machine code generated compared to ``-DSO_NO_DIM_ANALYSIS``?
 * Support for references.
 
 ## Is it all worth it?
