@@ -156,7 +156,7 @@ template<typename... U, typename... V>
 inline auto operator+(physical_quantity<U...> p,
 		      physical_quantity<V...> q)
 {
-  static_assert(std::is_same<pack<U...>, pack<V...>>::value, "Can not add quantities of different dimensionality!");
+  static_assert(std::is_same<physical_quantity<U...>, physical_quantity<V...>>::value, "Can not subtract quantities of different dimensionality!");
   return physical_quantity<U...> {p.get_val()+q.get_val()};
 }
 
@@ -164,7 +164,7 @@ template<typename... U, typename... V>
 inline auto operator-(physical_quantity<U...> p,
 		      physical_quantity<V...> q)
 {
-  static_assert(std::is_same<pack<U...>, pack<V...>>::value, "Can not subtract quantities of different dimensionality!");
+  static_assert(std::is_same<physical_quantity<U...>, physical_quantity<V...>>::value, "Can not subtract quantities of different dimensionality!");
   return physical_quantity<U...> {p.get_val()-q.get_val()};
 }
 
@@ -186,10 +186,22 @@ inline auto operator/(physical_quantity<U...> p,
     {p.get_val() / q.get_val()};
 }
 
+
+// interface usable for all values of SOU_NO_DIM_ANALYSIS
+template<typename... U>
+inline double get_val(const physical_quantity<U...> p)
+{
+  return p.get_val();
+}
+
 #else // SO_NO_DIM_ANALYSIS is defined
 using energy_quantity=double;
 using length_quantity=double;
 using time_quantity=double;
+inline double get_val(double x)
+{
+  return x;
+}
 #endif
 
 const auto GeV=energy_quantity{1.0e3};
