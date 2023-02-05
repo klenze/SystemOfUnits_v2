@@ -104,3 +104,11 @@ This will make calculating a*b and a/b harder, but not impossible. Don't expect 
 
 * It depends on the project. If your project is very explicit about spelling out what the units are and already uses the CLHEP units everywhere, it might be that jumping through the hoops to make it compilable with unit dimensionality checking is just not worth it. 
 * If, on the other hand, your project already uses multiple incompatible systems of units at different places and contains methods like ``SetX(double)``, where the units of X are not immediately obvious, you might benefit from being able to specify (and enforce) ``SetX(length_quantity). (Assuming this code ever goes beyond proof of concept.)
+
+## Prior art and alternatives
+
+I am certainly not the first person to propose using C++ types to perform dimensional analysis. 
+
+[mpusz/units](https://github.com/mpusz/units) [https://mpusz.github.io/wg21-papers/papers/1935R0_a_cpp_approach_to_physical_units.html#prior-work](proposal for the C++ standard) lists multiple libraries, such as [boost](https://www.boost.org/doc/libs/1_70_0/doc/html/boost_units.html)  [nholthaus/units](https://github.com/nholthaus/units) as prior art. So the idea of using std::ratio is also not original from me. 
+
+Without having used them, I am unsure if the world needs yet another implementation (at least I got to use higher order templates). Adding support for using an already established unit library to CLHEP is something which should be considered, however. 
